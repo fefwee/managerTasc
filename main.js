@@ -7,6 +7,11 @@
    const closeModalIcon = document.querySelector('.close_window_icon');
    const loginBtn = document.querySelector('.theme');
    const loginWindow = document.querySelector('.login_window')
+   const selectIndex = document.querySelector('.name_of_tasc');
+   let valueSelect = selectIndex.options[selectIndex.selectedIndex].text;
+   const dateNow = new Date();
+   
+   
 
 
    function closeModal (){
@@ -36,33 +41,73 @@
     tascOfField.addEventListener('click',doneTasc)
 
 
-function createTasc(event){
-    
-    event.preventDefault();
 
-    let selectIndex = document.querySelector('.name_of_tasc');
-    let valueSelect = selectIndex.options[selectIndex.selectedIndex].text;
-    const tascBlockCreate = `
-<li class="tasc_create_block">
-        <h1>${valueSelect}</h1>
-        <input class="tasc_content" value = "${description.value}" readonly></input>
-        <div class="change_buttons">
-            <button class="done">Done</button>
-        <button class="delete">Delete</button>
-    </div>
-</li>`  
-       tascOfField.insertAdjacentHTML("beforeend",tascBlockCreate);
-       modalIcon.classList.add('active');
-    }
+    //SERVER
+
+
+    //CREATE POST 
+
+
+    const createTascOnServer = async()=> {
+       const tasc = fetch('http://localhost:8080/post/create',{
+        method:'POST',
+        headers:{
+            'Content-type':'application/json',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ItCw0L3RgtC-0L0iLCJpYXQiOjE2NzMxMTI2MzMsImV4cCI6MTY3MzcxNzQzM30.jBEMowUAwCarlxETSg-bkmkSMOeeVeTEvZiH8e8bYpU'
+            
+        },
+        body:JSON.stringify({
+            title:valueSelect,
+            content:description.value,
+        })
+    })
+    const response = await tasc.json();
+    return tasc;
+}
+    
+
+   createTascBtn.addEventListener('click',createTascOnServer)
    
 
-   //create tasc block
-    createTascBtn.addEventListener('click',createTasc);
+    const getPost  = async()=> {
+
+           const gettasc = await fetch('http://localhost:8080/post/getPost',{
+        headers:{
+            'Content-type':'application/json',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ItCw0L3RgtC-0L0iLCJpYXQiOjE2NzMxMTI2MzMsImV4cCI6MTY3MzcxNzQzM30.jBEMowUAwCarlxETSg-bkmkSMOeeVeTEvZiH8e8bYpU'
+
+        }
+    }
+    )
+    const result = await gettasc.json();
+
+    return result
+}
   
+ const result = await getPost();
+    let posts = result.posts
+    let item;
+    for(item of posts){
+        createTasc()
+    }
+
+    function createTasc(){
+         
+             const tascBlockCreate = `
+         <li class="tasc_create_block">
+                 <h6>${item.value.createTime}</h6>
+                 <h1>${item.value.title}</h1>
+                 <input class="tasc_content" value = "${item.value.content}" readonly></input>
+                 <div class="change_buttons">
+                     <button class="done">Done</button>
+                 <button class="delete">Delete</button>
+             </div>
+         </li>`  
+                tascOfField.insertAdjacentHTML("beforeend",tascBlockCreate);
+                modalIcon.classList.add('active');
+             } 
     
 
-
-    
 
 
     function deleteTasc(event){
@@ -92,6 +137,7 @@ function createTasc(event){
     const inputPassword = form.querySelector('.password_user')
     const registrationBtn = form.querySelector('.registration_btn');
     const authBtn = form.querySelector('.auth_btn')
+    const formAddTasc = document.querySelector('.formAddTasc')
 
   
   
@@ -105,7 +151,7 @@ function createTasc(event){
         
      
     function regInfo(){
-        fetch('http://localhost:8080/user/registration',{
+       fetch('http://localhost:8080/user/registration',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -140,31 +186,20 @@ function createTasc(event){
    
 
         fetch('http://localhost:8080/user/getUser',{     
-            
               headers: {
-                'Authorization': 'Bearer ' + window.localStorage.getItem('token') },
-        })
+                'Content-Type':'application/json',
+                'Authorization': 'Bearer ' + window.localStorage.getItem('token') 
+            },
+        } )
         .then(res=> res.json())
         .then(data=> console.log(data)) 
             
+    
 
 
-        /* async function fetchData(url,methodData){
-            await fetch((url),{
-                method:methodData,
-                headers:{
-                    'Content-type':'application/json'
-                },
-                body:JSON.stringify({
-                    username:inputName.value,
-                    password:inputPassword.value
-                })
-            })
-            .then(res=> res.json())
-            .then(data=> console.log(data)) 
-                
+
+
             
-        } */
    
     
 
