@@ -135,7 +135,7 @@ input:focus{
 
 /* edit btn and delete btn*/
 .done_btn{
-    color:rgb(148, 144, 144);
+    color:rgb(233, 10, 10);
     text-decoration: line-through;
 }
 
@@ -177,4 +177,8 @@ input:focus{
 }
 .green{
     background-color: rgb(122, 238, 122);
+}
+.logo{
+    position:absolute;
+    right:0px;
 }

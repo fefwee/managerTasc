@@ -48,7 +48,7 @@
     //CREATE POST 
 
 
-    const createTascOnServer = async()=> {
+    async function createTascOnServer () {
        const tasc = fetch('http://localhost:8080/post/create',{
         method:'POST',
         headers:{
@@ -69,7 +69,7 @@
    createTascBtn.addEventListener('click',createTascOnServer)
    
 
-    const getPost  = async()=> {
+     async function getPost() {
 
            const gettasc = await fetch('http://localhost:8080/post/getPost',{
         headers:{
@@ -79,20 +79,31 @@
         }
     }
     )
-    const result = await gettasc.json();
+       return gettasc.json();
 
-    return result
-}
-  
- const result = await getPost();
-    let posts = result.posts
-    let item;
-    for(item of posts){
-        createTasc()
     }
 
+        let item;
+
+     async function posts (){
+
+        const response = await getPost();
+        const contentPosts = response.posts;
+        console.log(contentPosts)
+        for(item of contentPosts){
+            createTasc()
+        }
+
+        
+     }
+     posts()
+
+      
+   
+
+
     function createTasc(){
-         
+       
              const tascBlockCreate = `
          <li class="tasc_create_block">
                  <h6>${item.value.createTime}</h6>
@@ -185,14 +196,14 @@
     }
    
 
-        fetch('http://localhost:8080/user/getUser',{     
+       /*  fetch('http://localhost:8080/user/getUser',{     
               headers: {
                 'Content-Type':'application/json',
                 'Authorization': 'Bearer ' + window.localStorage.getItem('token') 
             },
         } )
         .then(res=> res.json())
-        .then(data=> console.log(data)) 
+        .then(data=> console.log(data)) */ 
             
     
 
