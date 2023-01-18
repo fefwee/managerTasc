@@ -1,31 +1,39 @@
-   import { createTasc,createTascOnServer,tascOfField } from "./createTasc.js";
-   import { regInfo,authInfo,getUser,getPost,registrationBtn,authBtn } from "./fetch_methods.js";
+   import { createTasc,tascOfField } from "./createTasc.js";
+   import { regisTration,auth,getUser,getPost,form,createTascAddToServer } from "./fetch_methods.js";
    import { openModalWindow,closeModal,openLoginModal,closeModalIcon,loginBtn} from "./modal_window.js";
 
 
+   const  formAddTasc = document.querySelector('.formAddTasc')
    const fieldOfTasc  = document.querySelector('.field_of_tascs');
    const mainSection = document.querySelector('.main');
-   
+   const registrationBtn = document.querySelector('.registration_btn');
+   const authBtn = document.querySelector('.auth_btn')
    const createTascBtn = document.querySelector('.create_tasc_btn');
-   const form = document.querySelector('.registration_form');
-   const dateNow = new Date();
    
 
-    //CREATE POST 
+    //registration 
 
-   createTascBtn.addEventListener('click',createTascOnServer)
+    form.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        registrationBtn.addEventListener('click',regisTration)
+        console.log('click')
+    })
    
+    //authorization
 
-         //post form registr and auth
-
-         form.addEventListener('submit',(e)=>{
-            e.preventDefault()
-            registrationBtn.addEventListener('click',regInfo);
-            authBtn.addEventListener('click',authInfo)
+    form.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        authBtn.addEventListener('click',auth)
         })
-    
-        //get name user and post 
-        getUser()
+    //create posts 
+
+    formAddTasc.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        createTascBtn.addEventListener('click',createTascAddToServer)
+        })
+
+        getPost()
+
    
     
       
