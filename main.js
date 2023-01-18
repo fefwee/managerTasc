@@ -1,5 +1,5 @@
-   import { createTasc,tascOfField } from "./createTasc.js";
-   import { regisTration,auth,getUser,getPost,form,createTascAddToServer } from "./fetch_methods.js";
+   import { createTasc,tascOfField,getPost} from "./createTasc.js";
+   import { regisTration,auth,getUser,form,createTascAddToServer } from "./fetch_methods.js";
    import { openModalWindow,closeModal,openLoginModal,closeModalIcon,loginBtn} from "./modal_window.js";
 
 

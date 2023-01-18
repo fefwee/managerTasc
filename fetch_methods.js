@@ -7,23 +7,10 @@ const modalIcon = document.querySelector('.modal_window');
 
 
 
-export async function getPost(){
-    try{
-        const request = await fetch('http://localhost:8080/post/getPost',{
-            headers:{
-                'Content-type':'application/json',
-                'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ItCw0L3RgtC-0L0iLCJpYXQiOjE2NzM4MTA3NjAsImV4cCI6MTY3NDQxNTU2MH0.2G5zKn2TYyQ6pd9B53pNSILjiWTt_ju8smR2CFDkEwE'
-            }
-        })
-        const response = await request.json();
-        const obj = response;
-      
-    }
-    catch(e){
-        console.error(e)
-    }
-}
-let obj = []
+
+
+
+
     export async function regisTration(){
     try{
     const reg = fetch('http://localhost:8080/user/registration',{
