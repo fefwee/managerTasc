@@ -1,14 +1,8 @@
 const tascOfField = document.querySelector('.tasc_of_field');
 export const form = document.querySelector('.registration_form');
-const inputName = form.querySelector('.name_user');
-const inputPassword = form.querySelector('.password_user')
-const modalIcon = document.querySelector('.modal_window');
-
-
-
-
-
-
+const inputName = document.querySelector('.name_user');
+const inputPassword =document.querySelector('.password_user')
+const description = document.querySelector('.description_tasc');
 
 
     export async function regisTration(){
@@ -76,7 +70,7 @@ const modalIcon = document.querySelector('.modal_window');
             },
             body:JSON.stringify({
                 title:inputName.value,
-                content:inputPassword.value
+                content:description.value
             })
         })
         const requestCreate  = await create.json();
@@ -85,6 +79,9 @@ const modalIcon = document.querySelector('.modal_window');
         console.error(e)
     }
   }
+
+ 
+
 
 
 
