@@ -1,5 +1,5 @@
 const selectIndex = document.querySelector('.name_of_tasc');
-let valueSelect = selectIndex.options[selectIndex.selectedIndex].text;
+let valueSelect = selectIndex.options[selectIndex.selectedIndex].value;
 export const tascOfField = document.querySelector('.tasc_of_field');
 const modalIcon = document.querySelector('.modal_window');
 
@@ -13,8 +13,8 @@ const modalIcon = document.querySelector('.modal_window');
                     'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ItCw0L3RgtC-0L0iLCJpYXQiOjE2NzM4MTA3NjAsImV4cCI6MTY3NDQxNTU2MH0.2G5zKn2TYyQ6pd9B53pNSILjiWTt_ju8smR2CFDkEwE'
                 }
             })
-            const response = await request.json();
-            return await response
+            const response =  request.json();
+            return  response
           
         }
         catch(e){
@@ -22,19 +22,25 @@ const modalIcon = document.querySelector('.modal_window');
         }
     }
         const obj =  await getPost();
-        const post = obj.posts;
+        export const post = obj.posts;
         let content;
-        let id;
+        export let id;
         let date;
 
 
         console.log(post)
          for(let item of post){
             id = item.id;
+            console.log(id)
             content = item.value.content 
             date = item.value.createTime  
-            createTasc()      
+            createTasc()     
          }
+       
+
+         
+         
+     
          
     
 
@@ -44,6 +50,7 @@ const modalIcon = document.querySelector('.modal_window');
             const tascBlockCreate = `
             <li class="tasc_create_block">
                     <h5>${date}</h5>
+                    <h3 class = 'id'>${id}</h3>
                     <h6>${valueSelect}</h6>
                     <input class="tasc_content" value = "${content}" readonly></input>
                     <div class="change_buttons">
@@ -56,9 +63,9 @@ const modalIcon = document.querySelector('.modal_window');
                 
             }
 
-            export async function deleteTascMethod(){
+            export async function deleteTascMethod(event){
                 const req = await fetch('http://localhost:8080/post/delete',{
-                    method:'POST',
+                method:'DELETE',
                 headers:{
                     'Content-type':'application/json',
                     'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ItCw0L3RgtC-0L0iLCJpYXQiOjE2NzM4MTA3NjAsImV4cCI6MTY3NDQxNTU2MH0.2G5zKn2TYyQ6pd9B53pNSILjiWTt_ju8smR2CFDkEwE'
@@ -71,8 +78,6 @@ const modalIcon = document.querySelector('.modal_window');
                 const res = await req.json()
                 console.log(res)
             }
-            deleteTascMethod()
-        
 
    
 

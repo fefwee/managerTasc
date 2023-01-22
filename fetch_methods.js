@@ -78,7 +78,13 @@ const description = document.querySelector('.description_tasc');
     } catch(e){
         console.error(e)
     }
-  }
+  } 
+
+
+    function gerere (){
+        return new Promise()
+    }
+
 
  
 

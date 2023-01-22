@@ -1,4 +1,4 @@
-   import { createTasc,tascOfField,getPost} from "./createTasc.js";
+   import { createTasc,tascOfField,getPost,deleteTascMethod,id,post} from "./createTasc.js";
    import { regisTration,auth,getUser,form,createTascAddToServer } from "./fetch_methods.js";
    import { openModalWindow,closeModal,openLoginModal,closeModalIcon,loginBtn} from "./modal_window.js";
 
@@ -10,7 +10,7 @@
    const authBtn = document.querySelector('.auth_btn')
    const createTascBtn = document.querySelector('.create_tasc_btn');
    
-
+   
     //registration 
 
     form.addEventListener('submit',(e)=>{
@@ -34,18 +34,21 @@
 
         getPost()
 
-   
+        getUser()
     
       
 
 
     function deleteTasc(event){
-            if(event.target.textContent == 'Delete'){
+        const tasc = event.target;
+            if(tasc.textContent === 'Delete'){
               const parent = event.target.closest('.tasc_create_block');
-              parent.remove();
+              parent.remove();  
+            deleteTascMethod()
             }
-    
     }
+
+    
 
         function doneTasc(event){
             if(event.target.textContent == 'Done'){
