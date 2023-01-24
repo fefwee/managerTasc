@@ -1,3 +1,4 @@
+
 const selectIndex = document.querySelector('.name_of_tasc');
 let valueSelect = selectIndex.options[selectIndex.selectedIndex].value;
 export const tascOfField = document.querySelector('.tasc_of_field');
@@ -10,7 +11,7 @@ const modalIcon = document.querySelector('.modal_window');
             const request = await fetch('http://localhost:8080/post/getPost',{
                 headers:{
                     'Content-type':'application/json',
-                    'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ItCw0L3RgtC-0L0iLCJpYXQiOjE2NzM4MTA3NjAsImV4cCI6MTY3NDQxNTU2MH0.2G5zKn2TYyQ6pd9B53pNSILjiWTt_ju8smR2CFDkEwE'
+                    'Authorization':'Bearer '+window.localStorage.getItem('token')
                 }
             })
             const response =  request.json();
@@ -22,35 +23,26 @@ const modalIcon = document.querySelector('.modal_window');
         }
     }
         const obj =  await getPost();
-        export const post = obj.posts;
+        const post = obj.posts;
         let content;
-        export let id;
         let date;
+        let id;
 
 
-        console.log(post)
-         for(let item of post){
-            id = item.id;
+          for(let item of post){
+            id = item.id
             console.log(id)
             content = item.value.content 
             date = item.value.createTime  
             createTasc()     
-         }
-       
+         } 
 
-         
-         
-     
-         
-    
 
-        
 
         export  function createTasc (){
             const tascBlockCreate = `
-            <li class="tasc_create_block">
+            <li class="tasc_create_block" id= "${id}">
                     <h5>${date}</h5>
-                    <h3 class = 'id'>${id}</h3>
                     <h6>${valueSelect}</h6>
                     <input class="tasc_content" value = "${content}" readonly></input>
                     <div class="change_buttons">
@@ -60,15 +52,16 @@ const modalIcon = document.querySelector('.modal_window');
             </li>`  
                    tascOfField.insertAdjacentHTML("beforeend",tascBlockCreate);
                    modalIcon.classList.add('active');
+
                 
             }
 
-            export async function deleteTascMethod(event){
+            export async function deleteTascMethod(id){
                 const req = await fetch('http://localhost:8080/post/delete',{
                 method:'DELETE',
                 headers:{
                     'Content-type':'application/json',
-                    'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ItCw0L3RgtC-0L0iLCJpYXQiOjE2NzM4MTA3NjAsImV4cCI6MTY3NDQxNTU2MH0.2G5zKn2TYyQ6pd9B53pNSILjiWTt_ju8smR2CFDkEwE'
+                    'Authorization':'Bearer '+ window.localStorage.getItem('token')
                 },
                 body:JSON.stringify({
                     id:id

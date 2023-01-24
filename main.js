@@ -1,4 +1,4 @@
-   import { createTasc,tascOfField,getPost,deleteTascMethod,id,post} from "./createTasc.js";
+   import { createTasc,tascOfField,getPost,deleteTascMethod} from "./createTasc.js";
    import { regisTration,auth,getUser,form,createTascAddToServer } from "./fetch_methods.js";
    import { openModalWindow,closeModal,openLoginModal,closeModalIcon,loginBtn} from "./modal_window.js";
 
@@ -9,7 +9,8 @@
    const registrationBtn = document.querySelector('.registration_btn');
    const authBtn = document.querySelector('.auth_btn')
    const createTascBtn = document.querySelector('.create_tasc_btn');
-   
+  
+  
    
     //registration 
 
@@ -32,21 +33,33 @@
         createTascBtn.addEventListener('click',createTascAddToServer)
         })
 
-        getPost()
-
-        getUser()
+    
     
       
+        getUser()
+
 
 
     function deleteTasc(event){
-        const tasc = event.target;
-            if(tasc.textContent === 'Delete'){
+          
+           if(event.target.textContent === 'Delete'){
+            
               const parent = event.target.closest('.tasc_create_block');
               parent.remove();  
-            deleteTascMethod()
+            }    
+        
+    } 
+
+        function delId(event){
+            const id = event.target.id
+            if(id){
+                deleteTascMethod(+id)
             }
-    }
+        }
+
+        tascOfField.addEventListener('click',delId)
+
+
 
     
 

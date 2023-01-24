@@ -50,7 +50,7 @@ const description = document.querySelector('.description_tasc');
     try{
         const getusers = await fetch('http://localhost:8080/user/getUser',{
             headers:{
-                'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ItCw0L3RgtC-0L0iLCJpYXQiOjE2NzM5ODQ3MDYsImV4cCI6MTY3NDU4OTUwNn0.yG9ZSh7kQHqBm-PHVZ4iKLEG0IGf2Rgtyvnn7XEBkeo'
+                'Authorization':'Bearer '+window.localStorage.getItem('token')
             }
         });
         const requestUser = await getusers.json()
@@ -66,7 +66,7 @@ const description = document.querySelector('.description_tasc');
             method:'POST',
             headers:{
                 'Content-type':'application/json',
-                'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ItCw0L3RgtC-0L0iLCJpYXQiOjE2NzM4MTA3NjAsImV4cCI6MTY3NDQxNTU2MH0.2G5zKn2TYyQ6pd9B53pNSILjiWTt_ju8smR2CFDkEwE'
+                'Authorization':'Bearer '+window.localStorage.getItem('token')
             },
             body:JSON.stringify({
                 title:inputName.value,
@@ -81,9 +81,7 @@ const description = document.querySelector('.description_tasc');
   } 
 
 
-    function gerere (){
-        return new Promise()
-    }
+   
 
 
  
