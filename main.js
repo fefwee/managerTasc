@@ -41,27 +41,24 @@
 
 
     function deleteTasc(event){
+          if(event.target.textContent === 'Delete'){    
+          const parent = event.target.closest('.tasc_create_block');
+              parent.remove();   
+
+            } 
+    }  
+
+           
           
-           if(event.target.textContent === 'Delete'){
-            
-              const parent = event.target.closest('.tasc_create_block');
-              parent.remove();  
-            }    
-        
-    } 
-
-        function delId(event){
-            const id = event.target.id
-            if(id){
-                deleteTascMethod(+id)
+           function getId(event){
+            const id =  document.querySelector('.tasc_create_block').id
+            if(event.target.textContent === 'Delete'){
+                deleteTascMethod(+event.target.id)
             }
-        }
+           }
+           tascOfField.addEventListener('click',getId) 
+   
 
-        tascOfField.addEventListener('click',delId)
-
-
-
-    
 
         function doneTasc(event){
             if(event.target.textContent == 'Done'){
@@ -73,7 +70,7 @@
     }
 }
       //delete btn
-      tascOfField.addEventListener('click',deleteTasc)
+     tascOfField.addEventListener('click',deleteTasc)  
       //done btn
       tascOfField.addEventListener('click',doneTasc)
 

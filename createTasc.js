@@ -31,7 +31,6 @@ const modalIcon = document.querySelector('.modal_window');
 
           for(let item of post){
             id = item.id
-            console.log(id)
             content = item.value.content 
             date = item.value.createTime  
             createTasc()     
@@ -41,13 +40,13 @@ const modalIcon = document.querySelector('.modal_window');
 
         export  function createTasc (){
             const tascBlockCreate = `
-            <li class="tasc_create_block" id= "${id}">
+            <li class="tasc_create_block" >
                     <h5>${date}</h5>
                     <h6>${valueSelect}</h6>
                     <input class="tasc_content" value = "${content}" readonly></input>
                     <div class="change_buttons">
                         <button class="done">Done</button>
-                    <button class="delete">Delete</button>
+                    <button class="delete" id = "${id}">Delete</button>
                 </div>
             </li>`  
                    tascOfField.insertAdjacentHTML("beforeend",tascBlockCreate);
