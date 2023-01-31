@@ -1,6 +1,7 @@
    import { createTasc,tascOfField,getPost,deleteTascMethod} from "./createTasc.js";
-   import { regisTration,auth,getUser,form,createTascAddToServer } from "./fetch_methods.js";
+   import { regisTration,getUser,form,createTascAddToServer,allFetchMethods,username,password } from "./fetch_methods.js";
    import { openModalWindow,closeModal,openLoginModal,closeModalIcon,loginBtn} from "./modal_window.js";
+   import { createLogoUser,logoBtn,header } from "./logo_user.js";
 
 
    const  formAddTasc = document.querySelector('.formAddTasc')
@@ -10,7 +11,6 @@
    const authBtn = document.querySelector('.auth_btn')
    const createTascBtn = document.querySelector('.create_tasc_btn');
   
-  
    
     //registration 
 
@@ -19,29 +19,32 @@
         registrationBtn.addEventListener('click',regisTration)
         console.log('click')
     })
+
+
    
     //authorization
 
     form.addEventListener('submit',(e)=>{
         e.preventDefault();
-        authBtn.addEventListener('click',auth)
+        authBtn.addEventListener('click', allFetchMethods('http://localhost:8080/user/auth','POST',username,password))
         })
     //create posts 
 
     formAddTasc.addEventListener('submit',(e)=>{
         e.preventDefault();
         createTascBtn.addEventListener('click',createTascAddToServer)
-        })
+        }
+        )
 
     
     
-      
-        getUser()
-
+    
+     
+        
 
 
     function deleteTasc(event){
-          if(event.target.textContent === 'Delete'){    
+          if(event.target.classList.contains('delete')){    
           const parent = event.target.closest('.tasc_create_block');
               parent.remove();   
 
@@ -52,7 +55,7 @@
           
            function getId(event){
             const id =  document.querySelector('.tasc_create_block').id
-            if(event.target.textContent === 'Delete'){
+            if(event.target.classList.contains('delete')){
                 deleteTascMethod(+event.target.id)
             }
            }
@@ -61,7 +64,7 @@
 
 
         function doneTasc(event){
-            if(event.target.textContent == 'Done'){
+            if(event.target.classList.contains('done')){
                 const parent = event.target.closest('.tasc_create_block');
                 const tascContet =  parent.querySelector('.tasc_content');  
                 tascContet.classList.toggle('done_btn');
@@ -82,6 +85,8 @@
 
      //open sign in window
      loginBtn.addEventListener('click',openLoginModal)
+
+     logoBtn.addEventListener('click',createLogoUser)
 
     
 

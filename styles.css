@@ -35,6 +35,8 @@ button{
     outline: none;
 }
 .header{
+    position: relative;
+    width: 100%;
     padding: 10px;
     margin: 10px 0;
     border:2px solid rgb(211, 210, 210)
@@ -180,5 +182,15 @@ input:focus{
 }
 .logo{
     position:absolute;
-    right:0px;
+    right:0;
+}
+.logo_block{
+    position: absolute;
+    max-width: 200px;
+    text-align: center;
+    right:0;
+    margin-top:10px;
+}
+.close{
+    display:none
 }

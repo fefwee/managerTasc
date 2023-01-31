@@ -27,7 +27,7 @@ const description = document.querySelector('.description_tasc');
     console.error(e)
 }
 }
-  export async function auth(){
+  /* export async function auth(){
     try{
         const send = await fetch('http://localhost:8080/user/auth',{
             method:'POST',
@@ -45,7 +45,7 @@ const description = document.querySelector('.description_tasc');
     } catch(e){
         console.error(e)
     }
-  }
+  } */
   export async function getUser(){
     try{
         const getusers = await fetch('http://localhost:8080/user/getUser',{
@@ -54,7 +54,10 @@ const description = document.querySelector('.description_tasc');
             }
         });
         const requestUser = await getusers.json()
+        
         console.log(requestUser)
+        return requestUser
+
     } catch(e){
         console.error(e)
     }
@@ -80,13 +83,47 @@ const description = document.querySelector('.description_tasc');
     }
   } 
 
+  
+    export const loginAndPassword = {
+        username:inputName,
+        password:inputPassword
+    }
+
+    const createTascObject = {
+        title:inputName,
+        content:description
+    }
+
+    export const {username,password} = loginAndPassword;
+
+
+    export async function allFetchMethods(url,methodSend,username,password){
+         try{
+            const fetchUrl  = await fetch(url,{
+            method:methodSend,
+            headers:{
+                'Content-type':'application/json',
+                'Authorization':'Bearer '+window.localStorage.getItem('token')
+            },
+            body:JSON.stringify({
+                username:username.value,
+                password:password.value
+            })
+        })
+        const response  = await fetchUrl.json();
+        console.log(response)
+            }   
+    catch(e){
+        console.error('какая то ошибка: ' + e)
+            }
+
+    }
 
    
 
 
  
-
-
+   
 
 
 
