@@ -1,11 +1,10 @@
 
 const selectIndex = document.querySelector('.name_of_tasc');
-let valueSelect = selectIndex.options[selectIndex.selectedIndex].value;
+ let valueSelect = selectIndex.options[selectIndex.selectedIndex].value; 
 export const tascOfField = document.querySelector('.tasc_of_field');
 const modalIcon = document.querySelector('.modal_window');
 
     
-   
     export async function getPost(){
         try{
             const request = await fetch('http://localhost:8080/post/getPost',{
@@ -16,29 +15,37 @@ const modalIcon = document.querySelector('.modal_window');
             })
             const response =  request.json();
             return  response
-          
+        
         }
         catch(e){
             console.error(e)
         }
     }
-        const obj =  await getPost();
-        const post = obj.posts;
-        let content;
-        let date;
-        let id;
 
 
-          for(let item of post){
-            id = item.id
-            content = item.value.content 
-            date = item.value.createTime  
-            createTasc()     
-         } 
+        (async function getItemPost  (){
+            const obj =  await getPost();
+            const post = obj.posts
+            let content;
+            let date;
+            let id;
+    
+    
+              for(let item of post){
+                id = item.id
+                content = item.value.content 
+                date = item.value.createTime  
+                createTasc(date,valueSelect,content,id)     
+             }   
+
+        })()
+        
+
+    
 
 
 
-        export  function createTasc (){
+        export  function createTasc (date,valueSelect,content,id){
             const tascBlockCreate = `
             <li class="tasc_create_block" >
                     <h5>${date}</h5>

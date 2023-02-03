@@ -7,7 +7,7 @@ const description = document.querySelector('.description_tasc');
 
     export async function regisTration(){
     try{
-    const reg = fetch('http://localhost:8080/user/registration',{
+    const reg = await fetch('http://localhost:8080/user/registration',{
         method:'POST',
         headers:{
             'Content-type':'application/json',
@@ -26,8 +26,8 @@ const description = document.querySelector('.description_tasc');
 } catch(e){
     console.error(e)
 }
-}
-  /* export async function auth(){
+} 
+   export async function auth(){
     try{
         const send = await fetch('http://localhost:8080/user/auth',{
             method:'POST',
@@ -45,7 +45,8 @@ const description = document.querySelector('.description_tasc');
     } catch(e){
         console.error(e)
     }
-  } */
+}
+  
   export async function getUser(){
     try{
         const getusers = await fetch('http://localhost:8080/user/getUser',{
@@ -84,30 +85,27 @@ const description = document.querySelector('.description_tasc');
   } 
 
   
-    export const loginAndPassword = {
-        username:inputName,
-        password:inputPassword
-    }
+   const bodyReq = {
+    username:inputName.value,
+    password:inputPassword.value,
+    
 
-    const createTascObject = {
-        title:inputName,
-        content:description
-    }
-
-    export const {username,password} = loginAndPassword;
+   }
 
 
-    export async function allFetchMethods(url,methodSend,username,password){
+
+     export async function allFetchMethods(url,methodSend,body){
          try{
             const fetchUrl  = await fetch(url,{
             method:methodSend,
             headers:{
                 'Content-type':'application/json',
-                'Authorization':'Bearer '+window.localStorage.getItem('token')
+                
+
             },
             body:JSON.stringify({
-                username:username.value,
-                password:password.value
+                username:inputName.value,
+                password:inputPassword.value
             })
         })
         const response  = await fetchUrl.json();
@@ -118,7 +116,7 @@ const description = document.querySelector('.description_tasc');
             }
 
     }
-
+ 
    
 
 
