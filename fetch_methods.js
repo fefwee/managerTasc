@@ -85,16 +85,10 @@ const description = document.querySelector('.description_tasc');
   } 
 
   
-   const bodyReq = {
-    username:inputName.value,
-    password:inputPassword.value,
-    
-
-   }
 
 
 
-     export async function allFetchMethods(url,methodSend,body){
+  /*    export async function allFetchMethods(url,methodSend,body){
          try{
             const fetchUrl  = await fetch(url,{
             method:methodSend,
@@ -115,7 +109,7 @@ const description = document.querySelector('.description_tasc');
         console.error('какая то ошибка: ' + e)
             }
 
-    }
+    } */
  
    
 

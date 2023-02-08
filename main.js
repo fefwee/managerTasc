@@ -1,7 +1,6 @@
    import { createTasc,tascOfField,getPost,deleteTascMethod} from "./createTasc.js";
    import { getUser,form,createTascAddToServer, auth, regisTration } from "./fetch_methods.js";
    import { openModalWindow,closeModal,openLoginModal,closeModalIcon,loginBtn} from "./modal_window.js";
-   /* import { logoBtn,modalPlace,modalOne,reuseModal,appendHTML } from "./reuse_modal_icon.js"; */
 
 
    const  formAddTasc = document.querySelector('.formAddTasc')
@@ -11,7 +10,6 @@
    const authBtn = document.querySelector('.auth_btn')
    const createTascBtn = document.querySelector('.create_tasc_btn');
   
-    getUser()
 
 
 
@@ -82,7 +80,7 @@
       tascOfField.addEventListener('click',doneTasc)
 
 
-      document.querySelector('.create_tasc').addEventListener('click',modal(createTascModal).open())
+       document.querySelector('.create_tasc').addEventListener('click',openModalWindow) 
 
       //btn close modal window
       closeModalIcon.addEventListener('click',closeModal)    

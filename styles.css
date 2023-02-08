@@ -109,6 +109,7 @@ input:focus{
     height: 40px;
     cursor: pointer;
 }
+
 .active{
     display:none;
 }

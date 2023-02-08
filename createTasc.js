@@ -1,8 +1,7 @@
-
-const selectIndex = document.querySelector('.name_of_tasc');
- let valueSelect = selectIndex.options[selectIndex.selectedIndex].value; 
-export const tascOfField = document.querySelector('.tasc_of_field');
-const modalIcon = document.querySelector('.modal_window');
+   
+    const selectIndex = document.querySelector('.name_of_tasc');
+    let valueSelect = selectIndex.options[selectIndex.selectedIndex].value; 
+    export const tascOfField = document.querySelector('.tasc_of_field');
 
     
     export async function getPost(){
@@ -22,23 +21,22 @@ const modalIcon = document.querySelector('.modal_window');
         }
     }
 
+    (async function getItemPost  (){
+        const obj =  await getPost();
+        const post = obj.posts
+        let content;
+        let date;
+        let id;
 
-        (async function getItemPost  (){
-            const obj =  await getPost();
-            const post = obj.posts
-            let content;
-            let date;
-            let id;
-    
-    
-              for(let item of post){
-                id = item.id
-                content = item.value.content 
-                date = item.value.createTime  
-                createTasc(date,valueSelect,content,id)     
-             }   
 
-        })()
+          for(let item of post){
+            id = item.id
+            content = item.value.content 
+            date = item.value.createTime  
+            createTasc(date,valueSelect,content,id)     
+         }   
+
+    })()
         
 
     
@@ -57,7 +55,6 @@ const modalIcon = document.querySelector('.modal_window');
                 </div>
             </li>`  
                    tascOfField.insertAdjacentHTML("beforeend",tascBlockCreate);
-                   modalIcon.classList.add('active');
 
                 
             }
