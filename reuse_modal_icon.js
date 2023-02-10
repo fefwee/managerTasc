@@ -1,16 +1,13 @@
- const logoBtn = document.querySelector('.logo')
+ const  logoBtn = document.querySelector('.logo')
  const  modalPlace = document.querySelector('.modal_place')
-
+ const  modalPlaceCreate = document.querySelector('.modal_place_create')
+ 
 
  const createTascModal = `
- <form class="formAddTasc">
+ <form class="formAddTasc form">
  <div class="modal_window ">
      <div class="wrapper_window">
          <div class="content_window">
-                 <select type="text" placeholder="Название" class="name_of_tasc">
-                 <option value="">важно</option>
-                 <option value="">В первую очередь</option>
-                 <option value="">может подождать</option>
              <textarea   placeholder="Описание" class="description_tasc" >hello</textarea>
              <button class="create_tasc_btn">Создать</button>
              <img src="images/close_btn.png" alt="close window" class="close_window_icon">
@@ -20,18 +17,18 @@
  </div>
  </form>
         `
-         
-
         const LoginAndPasswordModal = 
         `
-        <form  class="registration_form">
-        <div class="login_window">
+        <form  class="registration_form form">
+        <div class=" modal_window login_window">
             <div class="wrapper_window">
+            <div class="content_window">
                <input type="text" class="name_user">
                <input type="current-password"  class="password_user">
                <button class = "registration_btn" type="submit">Регистрация</button>
                <button type="submit" class="auth_btn">Войти</button>
                <img src="images/close_btn.png" alt="close window" class="close_window_icon">
+               </div>
             </div>
                     </div>
                     
@@ -39,62 +36,67 @@
         </div>
         </form>`
 
-        
+
                const modal = (html) =>({
                         close: ()=>{ 
-                                if(createTascModal){
-                                    document.querySelector('.modal_place').classList.add('active');
-                                    return  obj =  {
-                                       textValue:document.querySelector('.description_tasc').value,
-                                       selectValue:document.querySelector('.name_of_tasc').value
-                                    } 
-
-                                }
-
-                        
-                               
-                                   
+                                document.querySelector('.close_window_icon').addEventListener('click',(event)=>{
+                                        document.querySelector('.form').remove();
+                                       
+                                })
+                              
                         },
                         open: (html)=>{
-                                modalPlace.insertAdjacentHTML('beforeend',html);
-                            /*     document.querySelector('.formAddTasc').appendChild(html) */
+                                
+                                modalPlaceCreate.insertAdjacentHTML('beforeend',html);
+                                const form =  document.querySelector('.form');
+                                form.addEventListener('click',(event)=>{
+                                        event.preventDefault();
 
-
+                                         if((event.target.classList.contains("create_tasc_btn"))){                    
+                                                        openCreateTasc();
+                                                         
+                                         }
+                                          if((event.target.classList.contains("auth_btn"))){
+                                                        openAuth()                         
+                                        }     
+                                }
+                                )                  
                         }
-                }) 
+                })
 
                 const md = modal();
 
-                
 
-                
-
-
-
-              /*   class Modal {
-
-                        constructor(html){
-                                this.html = html
-                        }
-
-                        open(html){
-                               
-                                 document.querySelector('.modal_place').insertAdjacentHTML('beforeend',html);
-                        }
-
-                        close(value){
-                                if(value === this.html){
-                                        return {
-                                                des:document.querySelector('.description_tasc')
-                                      
-                                        }
-                                }
-
-                        }
+                function openCreateTasc(){
+                        const contentOfTasc = document.querySelector('.description_tasc');
+                        createTascAddToServer(contentOfTasc) 
                 }
 
-                const modal = new Modal (); */
+                function openAuth(){
+                        const nameUser = document.querySelector('.name_user')
+                        const passwordUser = document.querySelector('.password_user');
+                        auth(nameUser,passwordUser)   
+                }
 
+
+
+
+                document.querySelector('.create_tasc').addEventListener('click',()=>{
+                        md.open(createTascModal)
+                })
+
+               
+                
+                
+
+
+                
+
+                
+
+
+
+             
               
         
 

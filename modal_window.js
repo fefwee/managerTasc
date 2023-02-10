@@ -1,12 +1,12 @@
-export const modalIcon = document.querySelector('.modal_window');
-export const closeModalIcon = document.querySelector('.close_window_icon');
-export const loginBtn = document.querySelector('.theme');
-export const loginWindow = document.querySelector('.login_window')
-export const formAddTasc = document.querySelector('.formAddTasc')
+ const modalIcon = document.querySelector('.modal_window');
+ const closeModalIcon = document.querySelector('.close_window_icon');
+ const loginBtn = document.querySelector('.theme');
+ const loginWindow = document.querySelector('.login_window')
+ const formAddTasc = document.querySelector('.formAddTasc')
 
 
 
-const modalWindowMethods = {
+const modalWindowMethods  = {
     closeModal: function(){
             closeModalIcon.addEventListener('click',()=>{
             modalIcon.classList.add('active')
@@ -25,7 +25,7 @@ const modalWindowMethods = {
 }
 
 
-export const closeModal = modalWindowMethods.closeModal;
-export const openModalWindow = modalWindowMethods.openModalWindow;
-export const openLoginModal= modalWindowMethods.openLoginModal;
+const closeModal = modalWindowMethods.closeModal;
+const openModalWindow = modalWindowMethods.openModalWindow;
+const openLoginModal= modalWindowMethods.openLoginModal;
 

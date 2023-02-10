@@ -1,42 +1,32 @@
-   import { createTasc,tascOfField,getPost,deleteTascMethod} from "./createTasc.js";
-   import { getUser,form,createTascAddToServer, auth, regisTration } from "./fetch_methods.js";
-   import { openModalWindow,closeModal,openLoginModal,closeModalIcon,loginBtn} from "./modal_window.js";
-
-
-   const  formAddTasc = document.querySelector('.formAddTasc')
-   const fieldOfTasc  = document.querySelector('.field_of_tascs');
-   const mainSection = document.querySelector('.main');
-   const registrationBtn = document.querySelector('.registration_btn');
-   const authBtn = document.querySelector('.auth_btn')
-   const createTascBtn = document.querySelector('.create_tasc_btn');
+    const mainSection = document.querySelector('.main');
   
 
 
 
     //registration 
-
-     form.addEventListener('submit',(e)=>{
+/* 
+     document.querySelector('.registration_form').addEventListener('submit',(e)=>{
         e.preventDefault();
         registrationBtn.addEventListener('click',regisTration)
-    })
+    }) */
  
 
    
     //authorization 
 
-    form.addEventListener('submit',(e)=>{
+   /*  form.addEventListener('submit',(e)=>{
         e.preventDefault();
         authBtn.addEventListener('click', auth)
-        })
+        }) */
 
     //create posts 
 
 
-    formAddTasc.addEventListener('submit',(e)=>{
+  /*   formAddTasc.addEventListener('submit',(e)=>{
         e.preventDefault();
         createTascBtn.addEventListener('click',createTascAddToServer)
         }
-        )
+        ) */
 
     
     
@@ -44,7 +34,7 @@
      
         
 
-
+/* 
     function deleteTasc(event){
           if(event.target.classList.contains('delete')){    
           const parent = event.target.closest('.tasc_create_block');
@@ -73,20 +63,20 @@
      
     
     }
-}
+} */
       //delete btn
-     tascOfField.addEventListener('click',deleteTasc)  
+     // tascOfField.addEventListener('click',deleteTasc)  
       //done btn
-      tascOfField.addEventListener('click',doneTasc)
+ // tascOfField.addEventListener('click',doneTasc)
 
 
-       document.querySelector('.create_tasc').addEventListener('click',openModalWindow) 
+       //document.querySelector('.create_tasc').addEventListener('click',) 
 
       //btn close modal window
-      closeModalIcon.addEventListener('click',closeModal)    
+      //closeModalIcon.addEventListener('click',closeModal)    
 
      //open sign in window
-     loginBtn.addEventListener('click',openLoginModal)
+    // loginBtn.addEventListener('click',openLoginModal)
 
 
     

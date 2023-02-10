@@ -1,11 +1,11 @@
 const tascOfField = document.querySelector('.tasc_of_field');
-export const form = document.querySelector('.registration_form');
+/* const form = document.querySelector('.registration_form');
 const inputName = document.querySelector('.name_user');
 const inputPassword =document.querySelector('.password_user')
-const description = document.querySelector('.description_tasc');
+const description = document.querySelector('.description_tasc'); */
 
 
-    export async function regisTration(){
+    async function regisTration(){
     try{
     const reg = await fetch('http://localhost:8080/user/registration',{
         method:'POST',
@@ -27,7 +27,8 @@ const description = document.querySelector('.description_tasc');
     console.error(e)
 }
 } 
-   export async function auth(){
+
+    async function auth(name,password){
     try{
         const send = await fetch('http://localhost:8080/user/auth',{
             method:'POST',
@@ -35,8 +36,8 @@ const description = document.querySelector('.description_tasc');
                 'Content-type':'application/json', 
             },
             body:JSON.stringify({
-                username:inputName.value,
-                password:inputPassword.value
+                username:name.value,
+                password:password.value
             })
         })
         const response = await send.json()
@@ -47,7 +48,7 @@ const description = document.querySelector('.description_tasc');
     }
 }
   
-  export async function getUser(){
+   async function getUser(){
     try{
         const getusers = await fetch('http://localhost:8080/user/getUser',{
             headers:{
@@ -64,7 +65,7 @@ const description = document.querySelector('.description_tasc');
     }
   }
 
-  export async function createTascAddToServer(){
+   async function createTascAddToServer(contentOfTasc){
     try{
         const create = await fetch('http://localhost:8080/post/create',{
             method:'POST',
@@ -73,8 +74,8 @@ const description = document.querySelector('.description_tasc');
                 'Authorization':'Bearer '+window.localStorage.getItem('token')
             },
             body:JSON.stringify({
-                title:inputName.value,
-                content:description.value
+                title:'',
+                content:contentOfTasc.value
             })
         })
         const requestCreate  = await create.json();
