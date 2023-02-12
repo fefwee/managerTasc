@@ -1,6 +1,8 @@
  const  logoBtn = document.querySelector('.logo')
  const  modalPlace = document.querySelector('.modal_place')
  const  modalPlaceCreate = document.querySelector('.modal_place_create')
+ const createBtn = document.querySelector('.create_tasc');
+ const signInBtn = document.querySelector('.theme')
  
 
  const createTascModal = `
@@ -39,11 +41,9 @@
 
                const modal = (html) =>({
                         close: ()=>{ 
-                                document.querySelector('.close_window_icon').addEventListener('click',(event)=>{
-                                        document.querySelector('.form').remove();
-                                       
-                                })
-                              
+                                        document.querySelector('.close_window_icon').addEventListener('click',()=>{
+                                                document.querySelector('.form').remove();  
+                                        })
                         },
                         open: (html)=>{
                                 
@@ -53,15 +53,21 @@
                                         event.preventDefault();
 
                                          if((event.target.classList.contains("create_tasc_btn"))){                    
-                                                        openCreateTasc();
+                                                         openCreateTasc(); 
+                                                    
                                                          
                                          }
                                           if((event.target.classList.contains("auth_btn"))){
                                                         openAuth()                         
                                         }     
+                                          if((event.target.classList.contains("registration_btn"))){
+                                                        openRegistration()                       
+                                        }     
+                                          
                                 }
                                 )                  
                         }
+                     
                 })
 
                 const md = modal();
@@ -70,20 +76,54 @@
                 function openCreateTasc(){
                         const contentOfTasc = document.querySelector('.description_tasc');
                         createTascAddToServer(contentOfTasc) 
+                        
+                     
                 }
 
                 function openAuth(){
                         const nameUser = document.querySelector('.name_user')
                         const passwordUser = document.querySelector('.password_user');
-                        auth(nameUser,passwordUser)   
+                        const obj = {
+                                username:nameUser.value,
+                                password:passwordUser.value
+                        }
+                        allFetchMethods(authUrl,'POST',token,obj)
+               /*          auth(nameUser,passwordUser)    */
+                }
+                function openRegistration(){
+                        const nameUser = document.querySelector('.name_user')
+                        const passwordUser = document.querySelector('.password_user');
+                        regisTration(nameUser,passwordUser)   
                 }
 
 
-
-
-                document.querySelector('.create_tasc').addEventListener('click',()=>{
+                createBtn.addEventListener('click',()=>{
                         md.open(createTascModal)
                 })
+
+
+                signInBtn.addEventListener('click',()=>{
+                        md.open(LoginAndPasswordModal)
+                })
+
+
+                modalPlaceCreate.addEventListener('click',(event)=>{
+                        if(event.target.classList.contains('close_window_icon')){
+                                md.close();
+                        }
+                })
+
+
+
+
+
+
+
+
+                
+
+              
+
 
                
                 

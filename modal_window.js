@@ -1,4 +1,4 @@
- const modalIcon = document.querySelector('.modal_window');
+/*  const modalIcon = document.querySelector('.modal_window');
  const closeModalIcon = document.querySelector('.close_window_icon');
  const loginBtn = document.querySelector('.theme');
  const loginWindow = document.querySelector('.login_window')
@@ -29,3 +29,4 @@ const closeModal = modalWindowMethods.closeModal;
 const openModalWindow = modalWindowMethods.openModalWindow;
 const openLoginModal= modalWindowMethods.openLoginModal;
 
+ */

@@ -1,20 +1,23 @@
 const tascOfField = document.querySelector('.tasc_of_field');
-/* const form = document.querySelector('.registration_form');
-const inputName = document.querySelector('.name_user');
-const inputPassword =document.querySelector('.password_user')
-const description = document.querySelector('.description_tasc'); */
+const getUserUrl = 'http://localhost:8080/user/getUser';
+const createTascUrl = 'http://localhost:8080/post/create';
+const registrationUrl = 'http://localhost:8080/user/registration';
+const authUrl = 'http://localhost:8080/user/auth';
+const deleteUrl = 'http://localhost:8080/post/delete';
+const token = window.localStorage.getItem('token');
 
 
-    async function regisTration(){
+
+    async function regisTration(nameUser,passwordUser){
     try{
-    const reg = await fetch('http://localhost:8080/user/registration',{
+    const reg = await fetch(registrationUrl,{
         method:'POST',
         headers:{
             'Content-type':'application/json',
         },
         body:JSON.stringify({
-            username:inputName.value,
-            password:inputPassword.value
+            username:nameUser.value,
+            password:passwordUser.value
         })
     
     })
@@ -30,7 +33,7 @@ const description = document.querySelector('.description_tasc'); */
 
     async function auth(name,password){
     try{
-        const send = await fetch('http://localhost:8080/user/auth',{
+        const send = await fetch(authUrl,{
             method:'POST',
             headers:{
                 'Content-type':'application/json', 
@@ -50,9 +53,9 @@ const description = document.querySelector('.description_tasc'); */
   
    async function getUser(){
     try{
-        const getusers = await fetch('http://localhost:8080/user/getUser',{
+        const getusers = await fetch(getUserUrl,{
             headers:{
-                'Authorization':'Bearer '+window.localStorage.getItem('token')
+                'Authorization':'Bearer '+token
             }
         });
         const requestUser = await getusers.json()
@@ -67,11 +70,11 @@ const description = document.querySelector('.description_tasc'); */
 
    async function createTascAddToServer(contentOfTasc){
     try{
-        const create = await fetch('http://localhost:8080/post/create',{
+        const create = await fetch(createTascUrl,{
             method:'POST',
             headers:{
                 'Content-type':'application/json',
-                'Authorization':'Bearer '+window.localStorage.getItem('token')
+                'Authorization':'Bearer '+token
             },
             body:JSON.stringify({
                 title:'',
@@ -85,32 +88,52 @@ const description = document.querySelector('.description_tasc'); */
     }
   } 
 
+    async function deleteTascMethod(id){
+        const req = await fetch(deleteUrl,{
+        method:'DELETE',
+        headers:{
+            'Content-type':'application/json',
+            'Authorization':'Bearer '+ token
+        },
+        body:JSON.stringify({
+            id:id
+        })
+
+    })
+    const res = await req.json()
+    console.log(res)
+}
+
+
+  async function allFetchMethods(url,method,token,obj){
+    try { 
+    const request = await fetch((url),{
+        method:method,
+        headers:{
+            'Content-type':'application/json',
+            'Authorization':'Bearer '+token
+        },
+        body:JSON.stringify(
+            obj
+        )
+    })
+
+    } catch (error) {
+        console.log(error)
+        
+    }
+}
+
+ 
+
+  
+  
+
+
   
 
 
 
-  /*    export async function allFetchMethods(url,methodSend,body){
-         try{
-            const fetchUrl  = await fetch(url,{
-            method:methodSend,
-            headers:{
-                'Content-type':'application/json',
-                
-
-            },
-            body:JSON.stringify({
-                username:inputName.value,
-                password:inputPassword.value
-            })
-        })
-        const response  = await fetchUrl.json();
-        console.log(response)
-            }   
-    catch(e){
-        console.error('какая то ошибка: ' + e)
-            }
-
-    } */
  
    
 

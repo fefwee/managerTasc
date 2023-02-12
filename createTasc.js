@@ -52,27 +52,28 @@
                 </div>
             </li>`  
                    tascOfField.insertAdjacentHTML("beforeend",tascBlockCreate);
-                   
 
-                
             }
 
-            async function deleteTascMethod(id){
-                const req = await fetch('http://localhost:8080/post/delete',{
-                method:'DELETE',
-                headers:{
-                    'Content-type':'application/json',
-                    'Authorization':'Bearer '+ window.localStorage.getItem('token')
-                },
-                body:JSON.stringify({
-                    id:id
-                })
-        
-            })
-                const res = await req.json()
-                console.log(res)
-            }
-
-   
+          
 
 
+            (function deleteAndDoneTAsc(){
+                document.querySelector('.tasc_of_field').addEventListener('click',(event)=>{
+                    if(event.target.classList.contains('delete')){
+                        const id = event.target.id
+                        deleteTascMethod(+id)
+                    }
+                    if(event.target.classList.contains('done')){
+                        const parent = event.target.closest('.tasc_create_block');
+                        const tascContet =  parent.querySelector('.tasc_content');  
+                        tascContet.classList.toggle('done_btn');
+                    }
+                    
+                }
+                )
+            })()
+            
+            
+
+ 
