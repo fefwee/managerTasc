@@ -8,7 +8,7 @@ const token = window.localStorage.getItem('token');
 
 
 
-    async function regisTration(nameUser,passwordUser){
+   /*  async function regisTration(nameUser,passwordUser){
     try{
     const reg = await fetch(registrationUrl,{
         method:'POST',
@@ -29,9 +29,9 @@ const token = window.localStorage.getItem('token');
 } catch(e){
     console.error(e)
 }
-} 
+}  */
 
-    async function auth(name,password){
+   /*  async function auth(name,password){
     try{
         const send = await fetch(authUrl,{
             method:'POST',
@@ -49,9 +49,9 @@ const token = window.localStorage.getItem('token');
     } catch(e){
         console.error(e)
     }
-}
+}  */
   
-   async function getUser(){
+  /*  async function getUser(){
     try{
         const getusers = await fetch(getUserUrl,{
             headers:{
@@ -66,9 +66,9 @@ const token = window.localStorage.getItem('token');
     } catch(e){
         console.error(e)
     }
-  }
+  } */
 
-   async function createTascAddToServer(contentOfTasc){
+   /* async function createTascAddToServer(contentOfTasc){
     try{
         const create = await fetch(createTascUrl,{
             method:'POST',
@@ -86,7 +86,7 @@ const token = window.localStorage.getItem('token');
     } catch(e){
         console.error(e)
     }
-  } 
+  }  */
 
     async function deleteTascMethod(id){
         const req = await fetch(deleteUrl,{
@@ -104,25 +104,80 @@ const token = window.localStorage.getItem('token');
     console.log(res)
 }
 
+    function options (){
+    let headers = {
+        'content-type':'application/json'
+    }
 
-  async function allFetchMethods(url,method,token,obj){
+
+     const token = checkToken();
+
+    if(token){
+        headers = {
+            'content-type':'application/json',
+            'Authorization':'Bearer '+token
+        }
+    }
+    return headers
+} 
+
+   
+
+
+  async function allFetchMethods(url,method,obj){
+    
     try { 
     const request = await fetch((url),{
         method:method,
-        headers:{
-            'Content-type':'application/json',
-            'Authorization':'Bearer '+token
-        },
+        headers:
+             options()
+        ,
         body:JSON.stringify(
             obj
         )
+     
     })
+    const response = await request.json();
+    console.log(response)
+
 
     } catch (error) {
         console.log(error)
         
     }
 }
+
+//get user
+ allFetchMethods(getUserUrl,'GET')
+
+
+   
+    
+     function checkToken(){
+        try{
+        const havetoken =  window.localStorage.getItem('token');
+        if(havetoken){
+            console.log(true)
+        }
+        else{
+         console.log(false)
+        }
+
+        return havetoken;
+
+    } catch(error){
+        console.log(error)
+    }
+    }
+
+
+
+    
+
+
+
+  
+    
 
  
 

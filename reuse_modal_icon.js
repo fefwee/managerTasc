@@ -75,38 +75,63 @@
 
                 function openCreateTasc(){
                         const contentOfTasc = document.querySelector('.description_tasc');
-                        createTascAddToServer(contentOfTasc) 
+                        const obj = {
+                                title:'',
+                                content:contentOfTasc.value
+                        }
+                        allFetchMethods(createTascUrl,'POST',obj)
+                        /* createTascAddToServer(contentOfTasc) */ 
+
                         
                      
                 }
 
                 function openAuth(){
                         const nameUser = document.querySelector('.name_user')
-                        const passwordUser = document.querySelector('.password_user');
+                        const passwordUser = document.querySelector('.password_user'); 
                         const obj = {
                                 username:nameUser.value,
                                 password:passwordUser.value
                         }
-                        allFetchMethods(authUrl,'POST',token,obj)
-               /*          auth(nameUser,passwordUser)    */
+                      allFetchMethods(authUrl,'POST',obj)
+                     
+                        
+                /*      auth(nameUser,passwordUser)  */
                 }
+
+
                 function openRegistration(){
-                        const nameUser = document.querySelector('.name_user')
-                        const passwordUser = document.querySelector('.password_user');
-                        regisTration(nameUser,passwordUser)   
+                       const nameUser = document.querySelector('.name_user')
+                        const passwordUser = document.querySelector('.password_user'); 
+                      const obj = {
+                        username:nameUser.value,
+                        password:passwordUser.value
+                }
+                        allFetchMethods(registrationUrl,'POST',obj)  
+
+                             /*   regisTration(nameUser,passwordUser)  */
                 }
 
 
+
+
+
+
+
+
+
+//opem creatasc modal window
                 createBtn.addEventListener('click',()=>{
                         md.open(createTascModal)
                 })
 
+//open modal sigIn window
 
                 signInBtn.addEventListener('click',()=>{
                         md.open(LoginAndPasswordModal)
                 })
 
-
+// close modal window
                 modalPlaceCreate.addEventListener('click',(event)=>{
                         if(event.target.classList.contains('close_window_icon')){
                                 md.close();
