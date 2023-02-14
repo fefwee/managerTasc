@@ -19,6 +19,7 @@
  </div>
  </form>
         `
+        
         const LoginAndPasswordModal = 
         `
         <form  class="registration_form form">
@@ -111,13 +112,6 @@
 
                              /*   regisTration(nameUser,passwordUser)  */
                 }
-
-
-
-
-
-
-
 
 
 //opem creatasc modal window

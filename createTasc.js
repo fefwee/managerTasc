@@ -1,7 +1,7 @@
    
 
     
-    async function getPost(){
+     async function getPost(){
         try{
             const request = await fetch('http://localhost:8080/post/getPost',{
                 headers:{
@@ -17,8 +17,33 @@
             console.error(e)
         }
     }
+     
+    async function auth(name,password){
+        try{
+            const send = await fetch(authUrl,{
+                method:'POST',
+                headers:{
+                    'Content-type':'application/json', 
+                },
+                body:JSON.stringify({
+                    username:name.value,
+                    password:password.value
+                })
+            })
+            const response = await send.json()
+            window.localStorage.setItem('token',response.token)
+            console.log(response)
+        } catch(e){
+            console.error(e)
+        }
+    } 
 
-   (async function getItemPost  (){
+    /*  allFetchMethods(getPostUrl,'GET')  */
+     
+     
+
+
+    (async function getItemPost  (){
         const obj =  await getPost();
         const post = obj.posts
         let content;
@@ -33,7 +58,7 @@
             createTasc(date,content,id)     
          }   
 
-    })() 
+    })()  
         
 
     
